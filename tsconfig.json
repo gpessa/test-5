@@ -7,7 +7,7 @@
     "declarationMap": false,
     "importHelpers": true,
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
-    "module": "commonjs",
+    "module": "ESNext",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -20,10 +20,12 @@
     "typeRoots": ["./@types", "node_modules/@types"],
     "experimentalDecorators": true,
     "incremental": true,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "sourceMap": true,
-    "tsBuildInfoFile": "./.cache/typescript"
+    "tsBuildInfoFile": "./.cache/typescript",
+    "jsx": "react"
   },
-  "files": ["./src/index.ts"],
+  "files": ["src/index.tsx"],
   "include": ["./**/*"]
 }
