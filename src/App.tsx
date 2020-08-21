@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Upload from './components/Upload';
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import React, { useEffect,useState } from 'react';
+
+import LazyImage from './components/LazyImage';
+import Upload from './components/Upload';
 require('@tensorflow/tfjs');
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
     setFile(file)
   }
 
-  const onImageLoad = async (event: any) => {
+  const onImageLoad = async (event: unknown) => {
     const { className } = (await model!.classify(event.target))[0]
     setBreed(className)
   };
@@ -44,8 +46,8 @@ function App() {
       <Upload onChange={setImage} />
       {file && <img src={URL.createObjectURL(file)} onLoad={onImageLoad} />}
       {name && name}
-      {bastards && bastards.map(bastard => (
-        <img key={bastard} src={bastard}/>
+      {bastards?.map(bastard => (
+        <LazyImage key={bastard} src={bastard}/>
       ))}
     </>
   );
