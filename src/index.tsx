@@ -1,9 +1,11 @@
+import './theme.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './app';
+import Root from './root';
 
 ReactDOM.render(
-  <App />,
+  <Root />,
   document.querySelector('#root'),
 );

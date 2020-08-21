@@ -3,12 +3,18 @@ env:
   es6: true
   node: true
 extends:
-  - plugin:react/recommended
   - '@ridedott/eslint-config'
+  - 'plugin:react/recommended'
   - 'prettier/react'
 plugins:
   - react
 overrides:
+  - files: ./src/**/*.tsx
+    rules:
+      '@typescript-eslint/strict-boolean-expressions': 'off'
+      '@typescript-eslint/no-floating-promises': 'off'
+      '@typescript-eslint/typedef': 'off'
+      'react/prop-types': 'off'
   - files: ./src/**/*spec.ts
     rules:
       '@typescript-eslint/no-magic-numbers': 'off'
