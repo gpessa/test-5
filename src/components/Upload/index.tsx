@@ -1,20 +1,26 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 
-const Upload: React.FC = () => {
-  const [image, setImage] = useState<string>()
+const Upload: React.FC<{
+  onChange: (image: File) => any
+}> = ({
+  onChange
+}) => {
 
   const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target
     if (files) {
-      const url = URL.createObjectURL(files[0])
-      setImage(url)
+      onChange(files[0])
     }
   }
 
   return (
     <div>
-      {image && <img src={image} />}
-      <input type="file" onChange={onFileChange} /> 
+      <input
+        type="file"
+        multiple={false}
+        onChange={onFileChange}
+        accept="image/jpeg, image/png, .jpg, .jpeg, .png"
+      /> 
     </div>
   );
 }
