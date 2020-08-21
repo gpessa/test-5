@@ -6,9 +6,9 @@ require('@tensorflow/tfjs');
 function App() {
   const [model, setModel] = useState<mobilenet.MobileNet>()
   const [file, setFile] = useState<File>()
-  const [name, setName] = useState<string>()
+  const [breed, setBreed] = useState<string>()
+  const [bastards, setBastards] = useState<string[]>()
   
-
   const loadModel = async () => {
     const model = await mobilenet.load()
     setModel(model)
@@ -20,8 +20,18 @@ function App() {
 
   const onImageLoad = async (event: any) => {
     const { className } = (await model!.classify(event.target))[0]
-    setName(className)
+    setBreed(className)
   };
+
+  const searchBastards = async (breed: string) => {
+    const resp = await (fetch(`https://dog.ceo/api/breed/${breed}/images`))
+    const { message } = await resp.json()
+    setBastards(message)
+  }
+
+  useEffect(() => {
+    breed && searchBastards(breed)
+  }, [breed])
 
   useEffect(() => {
     loadModel()
@@ -34,6 +44,9 @@ function App() {
       <Upload onChange={setImage} />
       {file && <img src={URL.createObjectURL(file)} onLoad={onImageLoad} />}
       {name && name}
+      {bastards && bastards.map(bastard => (
+        <img key={bastard} src={bastard}/>
+      ))}
     </>
   );
 }
