@@ -11,7 +11,7 @@ const placeHolder =
 
 export const LazyImage = ({ src }: { src: string}) => {
   const [imageSource, setImageSource] = useState(placeHolder)
-  const [imageReference, setImageReference] = useState<Element>()
+  const [imageReference, setImageReference] = useState<HTMLImageElement | null>(null)
 
   useEffect(() => {
     let observer: IntersectionObserver

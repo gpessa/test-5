@@ -1,6 +1,7 @@
 extends:
   - stylelint-config-standard
   - stylelint-config-prettier
+  - stylelint-react-native
 plugins:
   - stylelint-order
 rules:

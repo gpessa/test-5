@@ -5,23 +5,23 @@ import LazyImage from './components/LazyImage';
 import Upload from './components/Upload';
 require('@tensorflow/tfjs');
 
-function App() {
+const App: React.FC = () => {
   const [model, setModel] = useState<mobilenet.MobileNet>()
   const [file, setFile] = useState<File>()
   const [breed, setBreed] = useState<string>()
-  const [bastards, setBastards] = useState<string[]>()
+  const [bastards, setBastards] = useState<string[]>([])
   
   const loadModel = async () => {
-    const model = await mobilenet.load()
-    setModel(model)
+    const loadedModel = await mobilenet.load()
+    setModel(loadedModel)
   }
   
-  const setImage = (file: File) => {
-    setFile(file)
+  const setImage = (newFile: File) => {
+    setFile(newFile)
   }
 
-  const onImageLoad = async (event: unknown) => {
-    const { className } = (await model!.classify(event.target))[0]
+  const onImageLoad = async (imageDom: HTMLImageElement) => {
+    const { className } = (await model!.classify(imageDom))[0]
     setBreed(className)
   };
 
@@ -44,11 +44,9 @@ function App() {
     <>
       {model && 'Loaded'}
       <Upload onChange={setImage} />
-      {file && <img src={URL.createObjectURL(file)} onLoad={onImageLoad} />}
-      {name && name}
-      {bastards?.map(bastard => (
-        <LazyImage key={bastard} src={bastard}/>
-      ))}
+      {file && <img src={URL.createObjectURL(file)} onLoad={e => onImageLoad(e.currentTarget)} />}
+      {name}
+      {bastards.map(bastard => <LazyImage key={bastard} src={bastard}/>)}
     </>
   );
 }
