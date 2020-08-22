@@ -1,9 +1,9 @@
 :root {
-  --black: #000000;
+  --black: #000;
   --darkBrown: #8f722f;
   --brown: #dec17a;
-  --white: #ffffff;
-  --orange: #ff9922;
+  --white: #fff;
+  --orange: #f92;
   --radiusSm: 4px;
   --radiusMd: 6px;
   --radiusLg: 8px;
@@ -15,12 +15,17 @@
 }
 
 html {
-  margin: 0;
-  padding: 0;
   background-color: var(--brown);
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Lobster', cursive;
 }

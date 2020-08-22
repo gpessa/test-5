@@ -2,20 +2,20 @@ import * as mobilenet from '@tensorflow-models/mobilenet';
 import { useEffect, useState } from 'react';
 require('@tensorflow/tfjs');
 
-interface UseMonsterState {
-  step: 'loading' | 'upload' | 'preview' | 'result' | 'error'
-  breed?: string
-  error?: string
-  model?: mobilenet.MobileNet
-  preview?: string
-  results?: string[]
+interface State {
+  breed?: string;
+  error?: string;
+  model?: mobilenet.MobileNet;
+  preview?: string;
+  results?: string[];
+  step: 'loading' | 'upload' | 'preview' | 'result' | 'error';
 }
 
-interface UseMonsterReturn extends UseMonsterState {
-  searchPictures: () => void
-  setImage: (file: File) => void
-  reset: () => void
-} 
+interface UseMonster extends State {
+  reset: () => void;
+  searchPictures: () => void;
+  setImage: (file: File) => void;
+}
 
 const getPictures = async (breed: string): Promise<string[]> => {
   const resp = await fetch(`https://dog.ceo/api/breed/${breed}/images`);
@@ -23,9 +23,8 @@ const getPictures = async (breed: string): Promise<string[]> => {
   return (await resp.json()).message;
 };
 
-
-const useMonster = (): UseMonsterReturn => {
-  const [monster, setMonster] = useState<UseMonsterState>({
+const useMonster = (): UseMonster => {
+  const [monster, setMonster] = useState<State>({
     step: 'loading',
   });
 
@@ -33,63 +32,62 @@ const useMonster = (): UseMonsterReturn => {
     try {
       const model = await mobilenet.load();
       setMonster(
-        (old: UseMonsterState): UseMonsterState => ({
+        (old: State): State => ({
           ...old,
+          model,
           step: 'upload',
-          model
         }),
       );
     } catch (error) {
       setMonster(
-        (old: UseMonsterState): UseMonsterState => ({
+        (old: State): State => ({
           ...old,
-          step: 'error'
+          step: 'error',
         }),
       );
     }
-
-  };
-
-  const setImage = (file: File): void => {
-    const preview = URL.createObjectURL(file);
-
-    setMonster(
-      (old: UseMonsterState): UseMonsterState => ({
-        ...old,
-        step: 'preview',
-        preview,
-      }),
-    );
   };
 
   const searchPictures = async (): Promise<void> => {
     const img = new Image();
-    img.src = '';
+    img.setAttribute('src', '')
 
-    img.addEventListener('load', async (): Promise<void> => {
-      const [{ className: breed }] = await monster.model.classify(img);
-      const results = await getPictures(breed);
+    img.addEventListener(
+      'load',
+      async (): Promise<void> => {
+        const [{ className: breed }] = await monster.model.classify(img);
+        const results = await getPictures(breed);
 
-      setMonster((old: UseMonsterState): UseMonsterState => ({
-        ...old,
-        step: 'result',
-        breed,
-        results,
-      }));
-    });
+        setMonster(
+          (old: State): State => ({
+            ...old,
+            breed,
+            results,
+            step: 'result',
+          }),
+        );
+      },
+    );
 
-    img.src = monster.preview;
+    img.setAttribute('src', monster.preview!);
   };
 
-  const reset = (): void => {
-    setMonster(
-      (old: UseMonsterState): UseMonsterState => ({
-        ...old,
-        step: 'upload',
-        preview: undefined
-      }),
-    );
-  }
+
+  const setImage = (file: File): void => setMonster(
+    (old: State): State => ({
+      ...old,
+      preview: URL.createObjectURL(file),
+      step: 'preview',
+    }),
+  );
+
+  const reset = (): void => setMonster(
+    (old: State): State => ({
+      ...old,
+      preview: undefined,
+      step: 'upload',
+    }),
+  );
 
   useEffect((): void => {
     void loadModel();
@@ -97,10 +95,10 @@ const useMonster = (): UseMonsterReturn => {
 
   return {
     ...monster,
+    reset,
     searchPictures,
     setImage,
-    reset
   };
 };
 
-export default useMonster
+export default useMonster;

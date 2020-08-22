@@ -17,7 +17,7 @@ const UploadContainer = styled.label`
 
   &:hover,
   &.UploadContainer--hover {
-    border: 6px dashed var(--darkBrown);
+    border: 6px dashed var(--orange);
   }
 `
   
