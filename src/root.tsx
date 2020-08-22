@@ -1,49 +1,33 @@
 
-import React, { useEffect,useState } from 'react';
+import React from 'react';
 
+import Button from './components/button';
 import LazyImage from './components/lazy-image';
 import Loader from './components/loader';
+import Round from './components/round';
 import Upload from './components/upload';
-import useTensorflow from './hooks/use-tensorflow';
+import useMonster from './hooks/use-monser';
+import Preview from './components/preview';
 
 const Root: React.FC = (): JSX.Element => {
-  const [file, setFile] = useState<File>()
-  const [breed, setBreed] = useState<string>()
-  const [pictures, setPictures] = useState<string[]>()
-  const { classify, loading } = useTensorflow()
   
+  const { step, preview, results, setImage, searchPictures, reset } = useMonster()
 
-  const setImage = (newFile: File): void => {
-    const newImg = new Image();
+  switch (step) {
+    case 'error': return <Round text={'Something went wrong'} />
 
-    newImg.addEventListener('load', async function () {
-      const name = await classify(newImg)
-      searchPictures(name)
-    })
-
-    newImg.src = URL.createObjectURL(newFile)
+    case 'loading': return <Loader />
+    
+    case 'upload': return <Upload onChange={setImage} />
+    
+    case 'preview': return <Preview src={preview} onProceed={searchPictures} onCancel={reset}/>
+    
+    case 'result': return (
+      <>
+        {results.map(result => <LazyImage key={result} src={result} />)}
+      </>
+    )
   }
-
-  /*
-   * Const onImageLoad = async (imageDom: HTMLImageElement): Promise<void> => {
-   *   const name = await classify(imageDom)
-   *   setBreed(name)
-   * };
-   */
-
-  const searchPictures = async (id: string): Promise<void> => {
-    const resp = await (fetch(`https://dog.ceo/api/breed/${id}/images`))
-    const { message } = await resp.json()
-    setPictures(message)
-  }
-  
-  // Return <LazyImage src="https://img.rasset.ie/00150743-1600.jpg" />
-
-  if (loading) return <Loader />
- 
-  if (!pictures) return <Upload onProceed={setImage} />
-   
-  return pictures.map(picture => <LazyImage key={picture} src={picture} />)
 }
 
 export default Root;

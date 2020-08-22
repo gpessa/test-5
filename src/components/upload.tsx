@@ -1,24 +1,30 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import uploadIcon from '../assets/upload-icon.svg'
-import Button from "./button"
 import Round from "./round"
 
 const UploadContainer = styled.label`
-  align-items: flex-end;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  position: absolute;
-  top: 0;
+  background-image: url(${uploadIcon});
+  background-position: center;
+  background-size: 90%;
+  border: 3px dashed var(--brown);
+  border-radius: 50%;
+  margin: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
   width: 100%;
+
+  &:hover,
+  &.UploadContainer--hover {
+    border: 6px dashed var(--darkBrown);
+  }
 `
   
 const UploadInput = styled.input`
   bottom: 0;
-  left: 0;  
+  cursor: pointer;
+  left: 0;    
   opacity: 0;
   position: absolute;
   top: 0;
@@ -26,31 +32,30 @@ const UploadInput = styled.input`
 `
 
 interface UploadProps {
-  onProceed: (image: File) => unknown
+  onChange: (image: File) => unknown
 }
 
-const Upload: React.FC<UploadProps> = ({ onProceed }): JSX.Element => {
-  const [file, setFile] = useState<File>()
-  const reference = React.createRef<HTMLInputElement>()
+const Upload: React.FC<UploadProps> = ({ onChange }): JSX.Element => {
+  const labelRef = useRef<HTMLLabelElement>(null)
 
   const onFileChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { files } = event.target
 
     if (files === null) return;
 
-    setFile(files[0])
+    onChange(files[0])
   }
   
   const addHover = (): void => {
-    reference.current?.classList.add('hover')
+    labelRef.current?.classList.add('UploadContainer--hover')
   }
   
   const removeHover = (): void => {
-    reference.current?.classList.remove('hover')
+    labelRef.current?.classList.remove('UploadContainer--hover')
   }
 
   useEffect(() => {
-    const div = reference.current
+    const div = labelRef.current
 
     if (div === null) return;
 
@@ -66,16 +71,15 @@ const Upload: React.FC<UploadProps> = ({ onProceed }): JSX.Element => {
   })
 
   return (
-    <Round iconSrc={file ? URL.createObjectURL(file) : uploadIcon} text={file ? undefined : 'Drag & Drop an image'}>
-      <UploadContainer ref={reference}>
+    <Round text={'Drag & Drop an image!'}>
+      <UploadContainer ref={labelRef}>
         <UploadInput
           type="file"
           multiple={false}
           onChange={onFileChange}
-          accept="image/jpeg, image/png, .jpg, .jpeg, .png"
+          accept="image/*"
         />
       </UploadContainer>
-      {file && <Button onClick={(): void => { onProceed(file) }} style={{ zIndex: 1 }}>Proceed</Button>}
     </Round>
   );
 }

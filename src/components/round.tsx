@@ -20,16 +20,11 @@ const animation = keyframes`
 const RoundWrapper = styled.div`
   animation: ${animation} 2s linear infinite;
   background-color: var(--white);
-  background-image: url(${({ iconSrc }: { iconSrc: string }): string => iconSrc});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   border: 25px solid var(--darkBrown);
   border-radius: 50%;
-  display: inline-flex;
+  display: flex;
   height: 250px;
   left: 50%;
-  padding: var(--spacingMd);
   position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -37,7 +32,6 @@ const RoundWrapper = styled.div`
 `
 
 const RoundText = styled.h3`
-  animation: pulse 2s infinite;
   color: var(--orange);
   font-size: 60px;
   left: 50%;
@@ -59,12 +53,11 @@ const RoundText = styled.h3`
 `
 
 interface RoundProps {
-  iconSrc: string
   text?: string
 }
 
-const Round: React.FC<RoundProps> = ({ text, iconSrc, children }): JSX.Element => (
-  <RoundWrapper iconSrc={iconSrc}> 
+const Round: React.FC<RoundProps> = ({ text, children }): JSX.Element => (
+  <RoundWrapper> 
     {text && <RoundText>{text}</RoundText>}
     {children}
   </RoundWrapper>
