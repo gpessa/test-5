@@ -106,7 +106,7 @@
       width: 100%;
     }
   }
-`;var f=({text:e,children:r})=>n.a.createElement(v,null,e&&n.a.createElement(b,null,e),r);const w=s.a.div`
+`;var f=({title:e,children:r})=>n.a.createElement(v,null,e&&n.a.createElement(b,null,e),r);const w=s.a.div`
   background-image: url(${({image:e})=>e});
   background-position: center;
   background-repeat: no-repeat;
@@ -136,7 +136,7 @@
     top: 50%;
     transform: translate(50%, -50%);
   }
-`;var k=({src:e,onProceed:r,onCancel:t})=>n.a.createElement(f,{text:"Do you want to proceed?"},n.a.createElement(x,{variant:"secondary",onClick:t},"Cancel"),n.a.createElement(w,{image:e}),n.a.createElement(E,{onClick:r},"Proceed")),y=t(44),j=t.n(y);const L=s.a.label`
+`;var k=({src:e,onProceed:r,onCancel:t})=>n.a.createElement(f,{title:"Do you want to proceed?"},n.a.createElement(x,{variant:"secondary",onClick:t},"Cancel"),n.a.createElement(w,{image:e}),n.a.createElement(E,{onClick:r},"Proceed")),y=t(44),j=t.n(y);const L=s.a.label`
   background-image: url(${j.a});
   background-position: center;
   background-size: 90%;
@@ -159,7 +159,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-`;var O=({onChange:e})=>{const r=Object(a.useRef)(null),t=()=>{var e;null===(e=r.current)||void 0===e||e.classList.add("UploadContainer--hover")},o=()=>{var e;null===(e=r.current)||void 0===e||e.classList.remove("UploadContainer--hover")};return Object(a.useEffect)(()=>{const e=r.current;if(null!==e)return e.addEventListener("dragenter",t),e.addEventListener("dragleave",o),e.addEventListener("drop",o),()=>{e.removeEventListener("dragenter",t),e.removeEventListener("dragleave",o),e.removeEventListener("drop",o)}}),n.a.createElement(f,{text:"Drag & Drop an image!"},n.a.createElement(L,{ref:r},n.a.createElement(C,{type:"file",multiple:!1,onChange:r=>{const{files:t}=r.target;null!==t&&e(t[0])},accept:"image/*"})))};const $=s.a.h1`
+`;var O=({onChange:e})=>{const r=Object(a.useRef)(null),t=()=>{var e;null===(e=r.current)||void 0===e||e.classList.add("UploadContainer--hover")},o=()=>{var e;null===(e=r.current)||void 0===e||e.classList.remove("UploadContainer--hover")};return Object(a.useEffect)(()=>{const e=r.current;if(null!==e)return e.addEventListener("dragenter",t),e.addEventListener("dragleave",o),e.addEventListener("drop",o),()=>{e.removeEventListener("dragenter",t),e.removeEventListener("dragleave",o),e.removeEventListener("drop",o)}}),n.a.createElement(f,{title:"Drag & Drop an image!"},n.a.createElement(L,{ref:r},n.a.createElement(C,{type:"file",multiple:!1,onChange:r=>{const{files:t}=r.target;null!==t&&e(t[0])},accept:"image/*"})))};const $=s.a.h1`
   background: var(--white);
   border-radius: 40px;
   bottom: 30px;
@@ -199,5 +199,5 @@
   background-size: 90%;
   height: 100%;
   width: 100%;
-`;var U=()=>n.a.createElement(f,{text:"Loading the puppies..."},n.a.createElement(S,null)),D=t(46);t(91);var M=function(){var e;return r=>new Promise(async(t,a)=>{e||(e=await D.a());const n=new Image;n.addEventListener("load",(async function(){try{const[{className:r}]=await e.classify(n);t(r)}catch(r){a(r)}}),!1),n.src=r})}();var J=async e=>{const r=await fetch(`https://dog.ceo/api/breed/${e}/images`),{message:t}=await r.json();if(!r.ok)throw new Error(t);return t};var W=()=>{const[e,r]=Object(a.useState)({step:"upload"});return{...e,reset:()=>r(e=>({...e,preview:void 0,step:"upload"})),searchPictures:async()=>{let t,a,n;r(e=>({...e,results:void 0,breed:void 0,step:"loading"}));try{t=await M(e.preview),a=await J(t)}catch({message:o}){n=o}r(e=>({...e,step:n?"error":"result",results:a,error:n,breed:t}))},setImage:e=>r(r=>({...r,preview:URL.createObjectURL(e),step:"preview"}))}};var Y=()=>{const{step:e,error:r,preview:t,results:a,breed:o,setImage:i,searchPictures:s,reset:c}=W();switch(e){case"error":return n.a.createElement(f,{text:r});case"loading":return n.a.createElement(U,null);case"upload":return n.a.createElement(O,{onChange:i});case"preview":return n.a.createElement(k,{src:t,onProceed:s,onCancel:c});case"result":return n.a.createElement(R,{results:a,breed:o,onReset:c})}};Boolean("localhost"===window.location.hostname||"[::1]"===window.location.hostname||window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));i.a.render(n.a.createElement(n.a.StrictMode,null,n.a.createElement(Y,null)),document.getElementById("root")),"serviceWorker"in navigator&&navigator.serviceWorker.ready.then(e=>{e.unregister()}).catch(e=>{console.error(e.message)})}},[[65,1,2]]]);
-//# sourceMappingURL=main.a870155d.chunk.js.map
+`;var U=()=>n.a.createElement(f,{title:"Loading the puppies..."},n.a.createElement(S,null)),D=t(46);t(91);var M=function(){var e;return r=>new Promise(async(t,a)=>{e||(e=await D.a());const n=new Image;n.addEventListener("load",(async function(){try{const[{className:r}]=await e.classify(n);t(r)}catch(r){a(r)}}),!1),n.src=r})}();var J=async e=>{const r=await fetch(`https://dog.ceo/api/breed/${e}/images`),{message:t}=await r.json();if(!r.ok)throw new Error(t);return t};var W=()=>{const[e,r]=Object(a.useState)({step:"upload"});return{...e,reset:()=>r(e=>({...e,preview:void 0,step:"upload"})),searchPictures:async()=>{let t,a,n;r(e=>({...e,results:void 0,breed:void 0,step:"loading"}));try{t=await M(e.preview),a=await J(t)}catch({message:o}){n=o}r(e=>({...e,step:n?"error":"result",results:a,error:n,breed:t}))},setImage:e=>r(r=>({...r,preview:URL.createObjectURL(e),step:"preview"}))}};var Y=()=>{const{step:e,error:r,preview:t,results:a,breed:o,setImage:i,searchPictures:s,reset:c}=W();switch(e){case"error":return n.a.createElement(f,{title:r});case"loading":return n.a.createElement(U,null);case"upload":return n.a.createElement(O,{onChange:i});case"preview":return n.a.createElement(k,{src:t,onProceed:s,onCancel:c});case"result":return n.a.createElement(R,{results:a,breed:o,onReset:c})}};Boolean("localhost"===window.location.hostname||"[::1]"===window.location.hostname||window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));i.a.render(n.a.createElement(n.a.StrictMode,null,n.a.createElement(Y,null)),document.getElementById("root")),"serviceWorker"in navigator&&navigator.serviceWorker.ready.then(e=>{e.unregister()}).catch(e=>{console.error(e.message)})}},[[65,1,2]]]);
+//# sourceMappingURL=main.d08021b0.chunk.js.map
