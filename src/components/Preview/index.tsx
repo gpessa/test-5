@@ -15,17 +15,29 @@ export const PreviewImage = styled.div`
 `;
 
 export const PreviewCancel = styled(Button)`
-  left: -50%;
+  left: 0;
+  top: 100%;
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
+
+  @media only screen and (min-width: 768px) {
+    left: -50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 export const PreviewProceed = styled(Button)`
+  right: 0;
+  top: 100%;
   position: absolute;
-  right: -50%;
-  top: 50%;
-  transform: translate(50%, -50%);
+  transform: translateY(-50%);
+
+  @media only screen and (min-width: 768px) {
+    right: -50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
 `;
 
 interface PreviewProps {

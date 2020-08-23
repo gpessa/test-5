@@ -31,23 +31,30 @@ const RoundWrapper = styled.div`
 `;
 
 const RoundText = styled.h3`
+  transform: translate(0%, -120%);
+  white-space: pre-wrap;
+  text-align: center;
   color: var(--orange);
   font-size: 60px;
-  left: 50%;
   line-height: 1;
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(-25deg);
-  transform-origin: center;
-  white-space: nowrap;
-  &::after {
-    background: var(--black);
-    content: '';
-    display: block;
-    height: 3px;
-    width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    transform: translate(-50%, -50%) rotate(-25deg);
+    transform-origin: center;
+    top: 50%;
+    left: 50%;
+    white-space: nowrap;
+    
+    &::after {
+      background: var(--black);
+      content: '';
+      display: block;
+      height: 3px;
+      width: 100%;
+    }
   }
 `;
 
