@@ -11,6 +11,7 @@ import photoService from '../../services/photo-service';
 jest.mock('../../services/classifier-service', () =>
   jest.fn().mockResolvedValue('Gaetano'),
 );
+
 jest.mock('../../services/photo-service', () =>
   jest.fn().mockResolvedValue(['www.babbo.com']),
 );

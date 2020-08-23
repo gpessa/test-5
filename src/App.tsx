@@ -14,7 +14,7 @@ const Root: React.FC = (): JSX.Element => {
     searchPictures,
     reset,
   } = useMonster();
-
+  
   switch (step) {
     case 'error':
       return <Round text={error} />;
