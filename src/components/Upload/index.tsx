@@ -71,7 +71,7 @@ const Upload: React.FC<UploadProps> = ({ onChange }): JSX.Element => {
   });
 
   return (
-    <Round text={'Drag & Drop an image!'}>
+    <Round title={'Drag & Drop an image!'}>
       <UploadContainer ref={labelRef}>
         <UploadInput
           type="file"

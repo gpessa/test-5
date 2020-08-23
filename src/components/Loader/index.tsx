@@ -13,7 +13,7 @@ const LoaderIcon = styled.div`
 `;
 
 const Loader: React.FC = (): JSX.Element => (
-  <Round text="Loading the puppies...">
+  <Round title="Loading the puppies...">
     <LoaderIcon />
   </Round>
 );

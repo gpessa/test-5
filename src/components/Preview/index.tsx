@@ -51,7 +51,7 @@ const Preview: React.FC<PreviewProps> = ({
   onProceed,
   onCancel,
 }): JSX.Element => (
-  <Round text="Do you want to proceed?">
+  <Round title="Do you want to proceed?">
     <PreviewCancel variant="secondary" onClick={onCancel}>
       Cancel
     </PreviewCancel>

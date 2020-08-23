@@ -17,7 +17,7 @@ const Root: React.FC = (): JSX.Element => {
   
   switch (step) {
     case 'error':
-      return <Round text={error} />;
+      return <Round title={error} />;
 
     case 'loading':
       return <Loader />;

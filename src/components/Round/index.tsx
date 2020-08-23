@@ -30,7 +30,7 @@ const RoundWrapper = styled.div`
   width: 250px;
 `;
 
-const RoundText = styled.h3`
+const RoundTitle = styled.h3`
   transform: translate(0%, -120%);
   white-space: pre-wrap;
   text-align: center;
@@ -59,12 +59,12 @@ const RoundText = styled.h3`
 `;
 
 interface RoundProps {
-  text?: string;
+  title?: string;
 }
 
-const Round: React.FC<RoundProps> = ({ text, children }): JSX.Element => (
+const Round: React.FC<RoundProps> = ({ title, children }): JSX.Element => (
   <RoundWrapper>
-    {text && <RoundText>{text}</RoundText>}
+    {title && <RoundTitle>{title}</RoundTitle>}
     {children}
   </RoundWrapper>
 );
