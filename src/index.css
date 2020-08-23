@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@300;400&display=swap");
 
 :root {
   --black: #000;
@@ -6,21 +6,13 @@
   --brown: #dec17a;
   --white: #fff;
   --orange: #f92;
-  --radiusSm: 4px;
-  --radiusMd: 6px;
-  --radiusLg: 8px;
-  --spacingSm: 1rem;
-  --spacingMd: 2rem;
-  --spacingLg: 3rem;
-  --fontSerif: 'Lobster';
-  --fontSanSerif: 'Open Sans';
+  --fontSerif: "Lobster";
+  --fontSanSerif: "Open Sans";
 }
 
 html {
   background-color: var(--brown);
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 h1,
@@ -29,5 +21,5 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
 }

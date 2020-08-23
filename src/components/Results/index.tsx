@@ -29,6 +29,27 @@ export const ResultsButton = styled(Button)`
   margin-top: -10px;
 `;
 
+export const ResultsList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  justify-content: space-between;
+
+  & > * {
+    width: 41%;
+    margin-top: 4%;
+
+    @media only screen and (min-width: 768px) {
+      margin: 0;
+      box-sizing: border-box;
+      width: 22%;
+      margin-top: 4%;
+    }
+  }
+
+`;
+
+
 const Results: React.FC<ResultsProps> = ({
   results,
   breed,
@@ -42,9 +63,11 @@ const Results: React.FC<ResultsProps> = ({
           cancel
         </ResultsButton>
       </ResultsBreed>
-      {results.map((result) => (
-        <LazyImage key={result} src={result} />
-      ))}
+      <ResultsList>
+        {results.map((result) => (
+          <LazyImage key={result} src={result} />
+        ))}
+      </ResultsList>
     </div>
   );
 };

@@ -37,7 +37,7 @@ interface LazyImageProps {
   src: string;
 }
 
-const Image = styled.div.attrs<LazyImageProps>(({ src }) => ({
+const LazyImageElement = styled.div.attrs<LazyImageProps>(({ src }) => ({
   style: {
     backgroundImage: `url(${src})`,
     animationDuration: `${Math.random()}s`,
@@ -46,18 +46,20 @@ const Image = styled.div.attrs<LazyImageProps>(({ src }) => ({
   background-color: var(--white);
   background-position: center;
   background-size: cover;
-  border: 25px solid var(--darkBrown);
-  border-radius: 50%;
-  display: inline-flex;
-  height: 200px;
-  margin: 10px;
-  width: 200px;
+  padding-bottom: 100%;
+  width: 100%;
 
   &.jello {
     animation-name: ${jello};
     transform-origin: center;
   }
 `;
+
+const LazyImageWrapper = styled.div`
+  border: 25px solid var(--darkBrown);
+  border-radius: 50%;
+  overflow: hidden;
+`
 
 const LazyImage: React.FC<LazyImageProps> = ({ src }): JSX.Element => {
   const [imageSource, setImageSource] = useState<string>(placeholder);
@@ -85,7 +87,11 @@ const LazyImage: React.FC<LazyImageProps> = ({ src }): JSX.Element => {
     };
   }, [src]);
 
-  return <Image src={imageSource} ref={ref} />;
+  return (
+    <LazyImageWrapper>
+      <LazyImageElement src={imageSource} ref={ref} />
+    </LazyImageWrapper>
+  )
 };
 
 export default LazyImage;
