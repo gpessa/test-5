@@ -37,4 +37,4 @@ node_modules
 lib
 
 # webpack output folder
-dist
+build

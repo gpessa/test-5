@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import uploadIcon from '../assets/upload-icon.svg'
-import Round from "./round"
+import uploadIcon from '../../assets/upload-icon.svg';
+import Round from '../Round';
 
 const UploadContainer = styled.label`
   background-image: url(${uploadIcon});
@@ -19,56 +19,56 @@ const UploadContainer = styled.label`
   &.UploadContainer--hover {
     border: 6px dashed var(--orange);
   }
-`
-  
+`;
+
 const UploadInput = styled.input`
   bottom: 0;
   cursor: pointer;
-  left: 0;    
+  left: 0;
   opacity: 0;
   position: absolute;
   top: 0;
   width: 100%;
-`
+`;
 
 interface UploadProps {
-  onChange: (image: File) => unknown
+  onChange: (image: File) => unknown;
 }
 
 const Upload: React.FC<UploadProps> = ({ onChange }): JSX.Element => {
-  const labelRef = useRef<HTMLLabelElement>(null)
+  const labelRef = useRef<HTMLLabelElement>(null);
 
   const onFileChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const { files } = event.target
+    const { files } = event.target;
 
     if (files === null) return;
 
-    onChange(files[0])
-  }
-  
+    onChange(files[0]);
+  };
+
   const addHover = (): void => {
-    labelRef.current?.classList.add('UploadContainer--hover')
-  }
-  
+    labelRef.current?.classList.add('UploadContainer--hover');
+  };
+
   const removeHover = (): void => {
-    labelRef.current?.classList.remove('UploadContainer--hover')
-  }
+    labelRef.current?.classList.remove('UploadContainer--hover');
+  };
 
   useEffect(() => {
-    const div = labelRef.current
+    const div = labelRef.current;
 
     if (div === null) return;
 
-    div.addEventListener('dragenter', addHover)
-    div.addEventListener('dragleave', removeHover)
-    div.addEventListener('drop', removeHover)
+    div.addEventListener('dragenter', addHover);
+    div.addEventListener('dragleave', removeHover);
+    div.addEventListener('drop', removeHover);
 
     return (): void => {
-      div.removeEventListener('dragenter', addHover)
-      div.removeEventListener('dragleave', removeHover)
-      div.removeEventListener('drop', removeHover)
-    }
-  })
+      div.removeEventListener('dragenter', addHover);
+      div.removeEventListener('dragleave', removeHover);
+      div.removeEventListener('drop', removeHover);
+    };
+  });
 
   return (
     <Round text={'Drag & Drop an image!'}>
@@ -82,6 +82,6 @@ const Upload: React.FC<UploadProps> = ({ onChange }): JSX.Element => {
       </UploadContainer>
     </Round>
   );
-}
+};
 
-export default Upload
+export default Upload;

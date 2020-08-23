@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react'
-import styled, { keyframes } from 'styled-components'
+import React, { useEffect, useState, useRef } from 'react';
+import styled, { keyframes } from 'styled-components';
 
-import image from "../assets/image-icon.svg"
+import placeholder from '../../assets/image-icon.svg';
 
 const jello = keyframes`
   from {
@@ -31,11 +31,19 @@ const jello = keyframes`
   to {
     transform: scale3d(1, 1, 1);
   }
-`
+`;
 
-const Image = styled.div`
+interface LazyImageProps {
+  src: string;
+}
+
+const Image = styled.div.attrs<LazyImageProps>(({ src }) => ({
+  style: {
+    backgroundImage: `url(${src})`,
+    animationDuration: `${Math.random()}s`,
+  },
+}))<LazyImageProps>`
   background-color: var(--white);
-  background-image: url(${({ src }: { src?: string }): string => src ? src : image});
   background-position: center;
   background-size: cover;
   border: 25px solid var(--darkBrown);
@@ -46,42 +54,38 @@ const Image = styled.div`
   width: 200px;
 
   &.jello {
-    animation: ${jello} ${() => Math.random() * 2}s linear;
+    animation-name: ${jello};
     transform-origin: center;
   }
-`
-
-interface LazyImageProps {
-  src: string
-}
+`;
 
 const LazyImage: React.FC<LazyImageProps> = ({ src }): JSX.Element => {
-  const [imageSource, setImageSource] = useState<string | undefined>()
-  const ref = useRef<HTMLImageElement>(null)
+  const [imageSource, setImageSource] = useState<string>(placeholder);
+  const ref = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries): void => {
         entries.forEach((entry): void => {
           if (entry.intersectionRatio > 0 || entry.isIntersecting) {
-            setImageSource(src)
-            ref.current?.classList.add('jello')
+            setImageSource(src);
+            ref.current?.classList.add('jello');
           }
-        })
+        });
       },
       {
         rootMargin: '70%',
         threshold: 0.01,
-      }
-    )
-    observer.observe(ref.current!)
+      },
+    );
+    observer.observe(ref.current!);
 
     return function cleanup() {
-      observer.disconnect()
-    }
-  }, [])
+      observer.disconnect();
+    };
+  }, [src]);
 
-  return <Image src={imageSource} ref={ref}/>
-}
+  return <Image src={imageSource} ref={ref} />;
+};
 
-export default LazyImage
+export default LazyImage;

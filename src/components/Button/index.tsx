@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Button = styled.button`
   background-color: var(--orange);
@@ -9,30 +9,36 @@ const Button = styled.button`
   font-family: var(--fontSanSerif);
   font-size: ${(props: ButtonProps) => {
     switch (props.variant) {
-      case 'secondary': return '13px'
-      default: return '20px'
+      case 'secondary':
+        return '13px';
+      default:
+        return '20px';
     }
   }};
   height: ${(props: ButtonProps) => {
     switch (props.variant) {
-      case 'secondary': return '80px'
-      default: return '120px'
+      case 'secondary':
+        return '80px';
+      default:
+        return '120px';
     }
   }};
   text-transform: uppercase;
   width: ${(props: ButtonProps) => {
     switch (props.variant) {
-      case 'secondary': return '80px'
-      default: return '120px'
+      case 'secondary':
+        return '80px';
+      default:
+        return '120px';
     }
   }};
   &:hover {
     background-color: var(--darkBrown);
   }
-`
+`;
 
 interface ButtonProps {
- variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary';
 }
 
-export default Button
+export default Button;

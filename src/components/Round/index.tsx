@@ -1,6 +1,5 @@
-import React from 'react'
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
-
 
 const animation = keyframes`
 	0% {
@@ -15,7 +14,7 @@ const animation = keyframes`
 		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
 		transform: translate(-50%, -50%) scale(0.85);
   }
-`
+`;
 
 const RoundWrapper = styled.div`
   animation: ${animation} 2s linear infinite;
@@ -29,7 +28,7 @@ const RoundWrapper = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
-`
+`;
 
 const RoundText = styled.h3`
   color: var(--orange);
@@ -40,7 +39,7 @@ const RoundText = styled.h3`
   padding: 0;
   position: absolute;
   top: 50%;
-  transform: translate(-50%,-50%) rotate(-25deg);
+  transform: translate(-50%, -50%) rotate(-25deg);
   transform-origin: center;
   white-space: nowrap;
   &::after {
@@ -50,17 +49,17 @@ const RoundText = styled.h3`
     height: 3px;
     width: 100%;
   }
-`
+`;
 
 interface RoundProps {
-  text?: string
+  text?: string;
 }
 
 const Round: React.FC<RoundProps> = ({ text, children }): JSX.Element => (
-  <RoundWrapper> 
+  <RoundWrapper>
     {text && <RoundText>{text}</RoundText>}
     {children}
   </RoundWrapper>
-)
+);
 
-export default Round
+export default Round;
