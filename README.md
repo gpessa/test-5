@@ -1,59 +1,63 @@
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+
+# Find your dog app
+
+  
+
+## Improvments
+
+-  **Accessibility**: I would have increase the website accessibility (for example images do not use an `image` tag so not really SEO friendly)
+
+- **Better responsive rules**: is the website responsive? Yes. It can be done better :) 
+
+- **Enviroment**: I would have used you starter repo. I started with but I was strugglingly a lot to adapt it to my needs (a react app), most of your rules make sense but others were givining me some extra pain.
+
+- **Reusability**: I would have create more reusable component. Some of them are really specific now.
+
+-  **Tests**: I would probably cover services, components and hook with tests (some tests are in place but the time was limited)
+
+- **React-router**: I would maybe include _react-router_ to people cold interact with the application with the back button for example (time was limited and I usually don't like to include extra tecnoplogies and code complexity if is not required)
+
+- **Redux**: I would maybe (but probably not) include a state managment technology like redux. I haven't done because it would have add complexity without adding much value to the product. Redux is a good tecnologies but my now I tend to use redux only when is really necessary and it add a value.
+
+  
+
+> In general, use Redux when you have reasonable amounts of data changing over time, you need a single source of truth, and you find that approaches like keeping everything in a top-level React component's state are no longer sufficient. However, it's also important to understand that using Redux comes with tradeoffs.
+> -Redux documentation
+
+  
 
 ## Available Scripts
 
+  
+
 In the project directory, you can run:
+
+  
 
 ### `yarn start`
 
-Runs the app in the development mode.<br /> Open
+  
+
+Runs the app in the development mode.<br  /> Open
+
 [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br /> You will also see any lint errors
-in the console.
+  
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br /> See the section
+  
+
+Launches the test runner in the interactive watch mode.<br  /> See the section
+
 about
-[running tests](https://facebook.github.io/create-react-app/docs/running-tests)
-for more information.
+
+  
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.<br /> It correctly bundles
+  
+
+Builds the app for production to the `build` folder.<br  /> It correctly bundles
+
 React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br /> Your app is
-ready to be deployed!
-
-See the section about
-[deployment](https://facebook.github.io/create-react-app/docs/deployment) for
-more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can
-`eject` at any time. This command will remove the single build dependency from
-your project.
-
-Instead, it will copy all the configuration files and the transitive
-dependencies (webpack, Babel, ESLint, etc) right into your project so you have
-full control over them. All of the commands except `eject` will still work, but
-they will point to the copied scripts so you can tweak them. At this point
-you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for
-small and middle deployments, and you shouldn’t feel obligated to use this
-feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the
-[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
