@@ -25,6 +25,14 @@ var classifierService = (function () {
         false,
       );
 
+      image.addEventListener(
+        'error',
+        function () {
+          reject(new Error('Cannot load image'));
+        },
+        false,
+      );
+
       image.src = src;
     });
 })();
