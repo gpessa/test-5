@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Button } from '..';
-import nextIcon from '../../assets/next-icon.svg';
-import backIcon from '../../assets/back-icon.svg';
+import iconNext from '../../assets/icon-next.svg';
+import iconBack from '../../assets/icon-back.svg';
 
 const animation = keyframes`
 	0% {
@@ -63,7 +63,7 @@ const RoundTitle = styled.h3`
 `;
 
 const RoundPrev = styled(Button)`
-  background-image: url(${backIcon});
+  background-image: url(${iconBack});
   background-size: 80%;
   background-position: center;
   font-size: 0;
@@ -75,7 +75,7 @@ const RoundPrev = styled(Button)`
 `
 
 const RoundNext = styled(Button)`
-  background-image: url(${nextIcon});
+  background-image: url(${iconNext});
   background-size: 80%;
   background-position: center;
   font-size: 0;

@@ -1,19 +1,10 @@
 import React from 'react';
 
 import { Round, Upload, Results, RoundImage } from './components';
-import useMonster from './hooks/useMonster';
+import useDog from './store/dog/hook';
 
 const Root: React.FC = (): JSX.Element => {
-  const {
-    step,
-    error,
-    preview,
-    results,
-    breed,
-    setImage,
-    searchPictures,
-    reset,
-  } = useMonster();
+  const { step, error, reset, setImage, searchPictures, preview, results, breed } = useDog()
 
 
   switch (step) {
@@ -27,7 +18,7 @@ const Root: React.FC = (): JSX.Element => {
     case 'loading':
       return (
         <Round title="Loading the puppies...">
-          <RoundImage src={require('./assets/loader-icon.svg')}/>
+          <RoundImage src={require('./assets/icon-loader.svg')}/>
         </Round>
       )
 
@@ -45,7 +36,7 @@ const Root: React.FC = (): JSX.Element => {
         </Round>
       )
 
-    case 'result':
+    case 'results':
       return <Results results={results!} breed={breed!} onReset={reset} />;
   }
 };

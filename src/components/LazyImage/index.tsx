@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import placeholder from '../../assets/image-icon.svg';
+import iconImage from '../../assets/icon-image.svg';
 
 const jello = keyframes`
   from {
@@ -62,7 +62,7 @@ const LazyImageWrapper = styled.div`
 `
 
 const LazyImage: React.FC<LazyImageProps> = ({ src }): JSX.Element => {
-  const [imageSource, setImageSource] = useState<string>(placeholder);
+  const [imageSource, setImageSource] = useState<string>(iconImage);
   const ref = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
