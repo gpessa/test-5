@@ -1,7 +1,7 @@
 
 # Find your dog app
 
-  
+You can view and play the app [here](https://gpessa.github.io/test-5/)  
 
 ## Improvments
 
