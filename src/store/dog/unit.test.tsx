@@ -1,6 +1,5 @@
-import { reducer, actions, initialState } from '.';
 import useDog from './hook';
-import { renderHook, act, HookResult, WaitOptions, RenderHookResult } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { Provider } from 'react-redux';
 import store from '../index'
 import React from 'react';
@@ -45,7 +44,7 @@ describe('dog slice', () => {
     });
 
 
-    it("Check on search image, service are being called", async () => {
+    it("should call service on searchImage", async () => {
       const hook = renderHook(() => useDog(), {
         wrapper: ({ children }) => <Provider store={store}>{children}</Provider>
       });
@@ -62,7 +61,7 @@ describe('dog slice', () => {
     });
 
 
-    it("After an image search, results and step should be updated", async () => {
+    it("should update results and step after searchImage", async () => {
       const hook = renderHook(() => useDog(), {
         wrapper: ({ children }) => <Provider store={store}>{children}</Provider>
       });
@@ -79,6 +78,7 @@ describe('dog slice', () => {
 
       expect(hook.result.current.results).toStrictEqual(['www.babbo.com']);
       expect(hook.result.current.step).toStrictEqual('results');
+      expect(hook.result.current.breed).toBe('Gaetano');
     });
   })
 })
