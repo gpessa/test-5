@@ -26,7 +26,7 @@ export const ResultsBreed = styled.h1`
 export const ResultsButton = styled(Button)`
   margin-left: 20px;
   margin-right: -10px;
-  margin-top: -10px;
+  margin-top: -5px;
 `;
 
 export const ResultsList = styled.div`
@@ -46,7 +46,6 @@ export const ResultsList = styled.div`
       margin-top: 4%;
     }
   }
-
 `;
 
 
@@ -59,9 +58,7 @@ const Results: React.FC<ResultsProps> = ({
     <div>
       <ResultsBreed>
         {breed}
-        <ResultsButton onClick={onReset} variant="secondary">
-          cancel
-        </ResultsButton>
+        <ResultsButton onClick={onReset} variant="secondary">Cancel</ResultsButton>
       </ResultsBreed>
       <ResultsList>
         {results.map((result) => (
