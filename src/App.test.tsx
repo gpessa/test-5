@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './App';
 import { shallow } from 'enzyme';
-import { Loader, Upload } from './components';
+import { Upload, Round } from './components';
 import useMonster, { UseMonster } from './hooks/useMonster';
 
 jest.mock('./hooks/useMonster');
@@ -23,6 +23,6 @@ describe('App', () => {
     } as UseMonster));
 
     const app = shallow(<App />);
-    expect(app.find(Loader).length).toBe(1);
+    expect(app.find(Round).length).toBe(1);
   });
 });

@@ -2,7 +2,6 @@ import React, { ChangeEvent, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import uploadIcon from '../../assets/upload-icon.svg';
-import Round from '../Round';
 
 const UploadContainer = styled.label`
   background-image: url(${uploadIcon});
@@ -71,16 +70,14 @@ const Upload: React.FC<UploadProps> = ({ onChange }): JSX.Element => {
   });
 
   return (
-    <Round title={'Drag & Drop an image!'}>
-      <UploadContainer ref={labelRef}>
-        <UploadInput
-          type="file"
-          multiple={false}
-          onChange={onFileChange}
-          accept="image/*"
-        />
-      </UploadContainer>
-    </Round>
+    <UploadContainer ref={labelRef}>
+      <UploadInput
+        type="file"
+        multiple={false}
+        onChange={onFileChange}
+        accept="image/*"
+      />
+    </UploadContainer>
   );
 };
 

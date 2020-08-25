@@ -18,7 +18,7 @@ const Button = styled.button`
   height: ${(props: ButtonProps) => {
     switch (props.variant) {
       case 'secondary':
-        return '80px';
+        return '70px';
       default:
         return '120px';
     }
@@ -27,7 +27,7 @@ const Button = styled.button`
   width: ${(props: ButtonProps) => {
     switch (props.variant) {
       case 'secondary':
-        return '80px';
+        return '70px';
       default:
         return '120px';
     }

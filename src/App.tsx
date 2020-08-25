@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Preview, Round, Loader, Upload, Results } from './components';
+import { Round, Upload, Results, RoundImage } from './components';
 import useMonster from './hooks/useMonster';
 
 const Root: React.FC = (): JSX.Element => {
@@ -14,21 +14,36 @@ const Root: React.FC = (): JSX.Element => {
     searchPictures,
     reset,
   } = useMonster();
-  
+
+
   switch (step) {
     case 'error':
-      return <Round title={error} />;
+      return (
+        <Round title={error} onBack={reset}>
+          <RoundImage src={require('./assets/icon-error.svg')}/>
+        </Round>
+      )
 
     case 'loading':
-      return <Loader />;
+      return (
+        <Round title="Loading the puppies...">
+          <RoundImage src={require('./assets/loader-icon.svg')}/>
+        </Round>
+      )
 
     case 'upload':
-      return <Upload onChange={setImage} />;
+      return (
+        <Round title="Drag &amp; Drop an image!">
+          <Upload onChange={setImage} />
+        </Round>
+      )
 
     case 'preview':
       return (
-        <Preview src={preview!} onProceed={searchPictures} onCancel={reset} />
-      );
+        <Round title="Do you want to proceed?" onNext={searchPictures} onBack={reset}>
+          <RoundImage src={preview!} />
+        </Round>
+      )
 
     case 'result':
       return <Results results={results!} breed={breed!} onReset={reset} />;

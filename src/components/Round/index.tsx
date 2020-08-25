@@ -1,5 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { Button } from '..';
+import nextIcon from '../../assets/next-icon.svg';
+import backIcon from '../../assets/back-icon.svg';
 
 const animation = keyframes`
 	0% {
@@ -28,6 +31,7 @@ const RoundWrapper = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
+  justify-content: center;
 `;
 
 const RoundTitle = styled.h3`
@@ -58,14 +62,49 @@ const RoundTitle = styled.h3`
   }
 `;
 
+const RoundPrev = styled(Button)`
+  background-image: url(${backIcon});
+  background-size: 80%;
+  background-position: center;
+  font-size: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 50%);
+  z-index: 1;
+`
+
+const RoundNext = styled(Button)`
+  background-image: url(${nextIcon});
+  background-size: 80%;
+  background-position: center;
+  font-size: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%);
+  z-index: 1;
+`
+
 interface RoundProps {
-  title?: string;
+  title?: string
+  onBack?: Function
+  onNext?: Function
 }
 
-const Round: React.FC<RoundProps> = ({ title, children }): JSX.Element => (
+const Round: React.FC<RoundProps> = ({ title, children, onBack, onNext }): JSX.Element => (
   <RoundWrapper>
+    {onBack && (
+      <RoundPrev variant="secondary" onClick={() => onBack()}>Previous</RoundPrev>
+    )}
+
     {title && <RoundTitle>{title}</RoundTitle>}
+
     {children}
+
+    {onNext && (
+      <RoundNext onClick={() => onNext()}>Next</RoundNext>
+    )}
   </RoundWrapper>
 );
 
