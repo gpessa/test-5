@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import classifierService from '../../services/classifier-service';
-import photosService from '../../services/photo-service';
+import photosService from '../../services/photos-service';
 
 interface DogState {
   breed?: string;
@@ -11,7 +11,8 @@ interface DogState {
   step: 'loading' | 'upload' | 'preview' | 'results' | 'error';
 }
 
-const initialState = {
+
+export const initialState = {
   step: 'upload',
 } as DogState
 
@@ -71,6 +72,7 @@ const { reducer, ...slice } = createSlice({
       }))
   }
 });
+
 
 const actions = {
   ...slice.actions,
